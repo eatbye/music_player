@@ -29,7 +29,6 @@ class _MyAppState extends State<MyApp> {
       print(value);
     };
     musicPlayer.onDuration = (value) {
-      print("=======================");
       print(value);
     };
     musicPlayer.onCompleted = (){
