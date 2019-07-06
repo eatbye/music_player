@@ -5,6 +5,9 @@ import AVFoundation
 
 import MediaPlayer
 
+import KTVHTTPCache
+
+
 enum MusicPlayerError: Error {
     case unknownMethod
     case invalidUrl
@@ -157,7 +160,10 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
         positionTimer = nil
         
         let urlString = properties["url"] as! String
-        let url = URL.init(string: urlString)
+        
+        let cacheUrlString = KTVHTTPCache.proxyURLString(withOriginalURLString: urlString)!
+        
+        let url = URL.init(string: cacheUrlString)
         if url == nil {
             throw MusicPlayerError.invalidUrl
         }
@@ -173,9 +179,14 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
         }
         
         updateInfoCenter()
-        
+
         let playerItem = AVPlayerItem.init(url: url!)
+
+        // 音频缓存开始
+        //let resourceLoaderManager = VIResourceLoaderManager()
+        //let playerItem = resourceLoaderManager.playerItem(with: url)!
         
+        //音频缓存结束
         
         itemStatusObserver = playerItem.observe(\AVPlayerItem.status) { [unowned self] playerItem, _ in
             self.itemStatusChanged(playerItem.status)

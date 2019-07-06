@@ -1,10 +1,16 @@
 PODS:
+  - CocoaAsyncSocket (7.6.3)
   - Flutter (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - KTVCocoaHTTPServer (1.0.0):
+    - CocoaAsyncSocket
+  - KTVHTTPCache (2.0.0):
+    - KTVCocoaHTTPServer
   - music_player (0.0.1):
     - Flutter
+    - KTVHTTPCache
   - path_provider (0.0.1):
     - Flutter
   - sqflite (0.0.1):
@@ -19,7 +25,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - CocoaAsyncSocket
     - FMDB
+    - KTVCocoaHTTPServer
+    - KTVHTTPCache
 
 EXTERNAL SOURCES:
   Flutter:
@@ -32,9 +41,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
+  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  music_player: 9818329a494a90234a42a3de4db563a5e976b698
+  KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
+  KTVHTTPCache: d794fc52c7df58ec7991e0ac4dfe1c938c99bfd8
+  music_player: 3d73cf08b201c26ba1131a6bcea2b8dafe986d1d
   path_provider: 09407919825bfe3c2deae39453b7a5b44f467873
   sqflite: d1612813fa7db7c667bed9f1d1b508deffc56999
 
