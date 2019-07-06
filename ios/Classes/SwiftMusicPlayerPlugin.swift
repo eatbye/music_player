@@ -130,6 +130,7 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
     func play(_ properties: NSDictionary) throws {
         let player = getPlayer()
         
+        
         //try audioSession.setCategory(.playback, mode: .default, options: [])
         //        try audioSession.setCategory(String
         //            , mode: .default, options: [])
@@ -143,6 +144,8 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
          try audioSession.setCategory(AVAudioSession.Category.playback)
          }
          */
+//        try audioSession.setCategory(AVAudioSessionCategoryPlayback);
+        try audioSession.setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault, options: []);
         try audioSession.setActive(true)
         
         // Resetting values.
