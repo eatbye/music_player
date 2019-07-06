@@ -160,13 +160,14 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
         positionTimer = nil
         
         let urlString = properties["url"] as! String
-        
-        let cacheUrlString = KTVHTTPCache.proxyURLString(withOriginalURLString: urlString)!
-        
-        let url = URL.init(string: cacheUrlString)
+        let url = URL.init(string: urlString)
         if url == nil {
             throw MusicPlayerError.invalidUrl
         }
+
+        KTVHTTPCache.logSetRecordLogEnable(false)
+        try KTVHTTPCache.proxyStart()
+        let cacheUrl = KTVHTTPCache.proxyURL(withOriginalURL: url);
         
         trackName = properties["trackName"] as! String
         albumName = properties["albumName"] as! String
@@ -180,7 +181,7 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
         
         updateInfoCenter()
 
-        let playerItem = AVPlayerItem.init(url: url!)
+        let playerItem = AVPlayerItem.init(url: cacheUrl!)
 
         // 音频缓存开始
         //let resourceLoaderManager = VIResourceLoaderManager()

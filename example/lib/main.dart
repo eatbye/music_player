@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:music_player/music_player.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -84,9 +85,19 @@ class _MyAppState extends State<MyApp> {
               )),
               child: Text('播放一个新的'),
             ),
+            RaisedButton(
+              onPressed: () async{
+                var appDir1 = (await getApplicationDocumentsDirectory()).path;
+                print(appDir1);
+              },
+              child: Text('路径'),
+            ),
+
           ],
         ),
       ),
     );
   }
 }
+
+
