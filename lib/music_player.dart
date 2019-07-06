@@ -92,6 +92,7 @@ class MusicPlayer {
           onDuration?.call(Duration(milliseconds: durationInMilliseconds));
           break;
         case 'onPosition':
+          print('@@@@@@@@@@@@@2');
           final double position = call.arguments;
           onPosition?.call(position);
           break;
