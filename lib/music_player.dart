@@ -18,6 +18,7 @@ class MusicItem {
   final String albumName;
   final String trackName;
   final String coverUrl;
+  final String cache;
 
   /// In case the duration is known before hand, this can
   /// be provided so the native player can show the duration
@@ -32,6 +33,7 @@ class MusicItem {
     @required this.artistName,
     @required this.albumName,
     @required this.duration,
+    @required this.cache,
     this.coverUrl,
   })  : this.id = id ?? url,
         this.url = url;
@@ -67,6 +69,7 @@ class MusicPlayer {
       'trackName': playlistItem.trackName,
       'albumName': playlistItem.albumName,
       'artistName': playlistItem.artistName,
+      'cache': playlistItem.cache,
       'duration': playlistItem.duration?.inMilliseconds,
       'coverFilename': filename,
     });

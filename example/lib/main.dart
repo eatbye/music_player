@@ -50,11 +50,12 @@ class _MyAppState extends State<MyApp> {
           children: <Widget>[
             RaisedButton(
               onPressed: () => musicPlayer.play(MusicItem(
-                trackName: 'Sample',
+                trackName: 'trackName',  //如果保持为空，锁屏控件将不显示
                 albumName: 'Sample Album',
                 artistName: 'Sample Artist',
                 url: 'http://listendata.ijsp.net/media/2/25/7754683.m4a',
                 coverUrl: 'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
+                cache: 'false'
 //              duration: Duration(seconds: 255),
               )),
               child: Text('Play'),
@@ -76,11 +77,12 @@ class _MyAppState extends State<MyApp> {
 
             RaisedButton(
               onPressed: () => musicPlayer.play(MusicItem(
-                trackName: 'Sample',
+                trackName: '',
                 albumName: 'Sample Album',
                 artistName: 'Sample Artist',
                 url: 'http://listendata.ijsp.net/media/2/25/7754453.m4a',
                 coverUrl: 'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
+                  cache: 'false'
 //              duration: Duration(seconds: 255),
               )),
               child: Text('播放一个新的'),

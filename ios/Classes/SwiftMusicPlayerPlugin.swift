@@ -59,42 +59,47 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
         timeControlStatusObserver = player.observe(\AVPlayer.timeControlStatus) { [unowned self] player, _ in
             self.timeControlStatusChanged(player.timeControlStatus)
         }
-        let commandCenter = MPRemoteCommandCenter.shared()
         
-        commandCenter.togglePlayPauseCommand.isEnabled = true
-        playPauseTarget = commandCenter.togglePlayPauseCommand.addTarget(handler: {
-            (event) in
-            if player.timeControlStatus == AVPlayer.TimeControlStatus.paused {
-                self.resume()
-            } else {
-                self.pause()
-            }
-            return .success
-        })
-        
-        commandCenter.nextTrackCommand.isEnabled = true
-        nextTrackTarget = commandCenter.nextTrackCommand.addTarget(handler: {
-            (event) in
-            self.channel.invokeMethod("onPlayNext", arguments: nil)
-            return .success
-        })
-        
-        commandCenter.previousTrackCommand.isEnabled = true
-        previousTrackTarget = commandCenter.previousTrackCommand.addTarget(handler: {
-            (event) in
-            self.channel.invokeMethod("onPlayPrevious", arguments: nil)
-            return .success
-        })
-        
-        commandCenter.changePlaybackPositionCommand.isEnabled = true
-        changePlaybackPositionTarget = commandCenter.changePlaybackPositionCommand.addTarget(handler: {
-            (remoteEvent) in
-            if let event = remoteEvent as? MPChangePlaybackPositionCommandEvent {
-                player.seek(to: CMTime(seconds: event.positionTime, preferredTimescale: CMTimeScale(1000)))
+        if(trackName != ""){
+            let commandCenter = MPRemoteCommandCenter.shared()
+            
+            commandCenter.togglePlayPauseCommand.isEnabled = true
+            playPauseTarget = commandCenter.togglePlayPauseCommand.addTarget(handler: {
+                (event) in
+                if player.timeControlStatus == AVPlayer.TimeControlStatus.paused {
+                    self.resume()
+                } else {
+                    self.pause()
+                }
                 return .success
-            }
-            return .commandFailed
-        })
+            })
+            
+            commandCenter.nextTrackCommand.isEnabled = true
+            nextTrackTarget = commandCenter.nextTrackCommand.addTarget(handler: {
+                (event) in
+                self.channel.invokeMethod("onPlayNext", arguments: nil)
+                return .success
+            })
+            
+            commandCenter.previousTrackCommand.isEnabled = true
+            previousTrackTarget = commandCenter.previousTrackCommand.addTarget(handler: {
+                (event) in
+                self.channel.invokeMethod("onPlayPrevious", arguments: nil)
+                return .success
+            })
+            
+            commandCenter.changePlaybackPositionCommand.isEnabled = true
+            changePlaybackPositionTarget = commandCenter.changePlaybackPositionCommand.addTarget(handler: {
+                (remoteEvent) in
+                if let event = remoteEvent as? MPChangePlaybackPositionCommandEvent {
+                    player.seek(to: CMTime(seconds: event.positionTime, preferredTimescale: CMTimeScale(1000)))
+                    return .success
+                }
+                return .commandFailed
+            })
+        }
+        
+        
         
         return player
     }
@@ -131,6 +136,10 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
     }
     
     func play(_ properties: NSDictionary) throws {
+        trackName = properties["trackName"] as! String
+        albumName = properties["albumName"] as! String
+        artistName = properties["artistName"] as! String
+
         let player = getPlayer()
         
         
@@ -164,14 +173,18 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
         if url == nil {
             throw MusicPlayerError.invalidUrl
         }
-
-        KTVHTTPCache.logSetRecordLogEnable(false)
-        try KTVHTTPCache.proxyStart()
-        let cacheUrl = KTVHTTPCache.proxyURL(withOriginalURL: url);
         
-        trackName = properties["trackName"] as! String
-        albumName = properties["albumName"] as! String
-        artistName = properties["artistName"] as! String
+        //判断是否需要缓存
+        let cache = properties["cache"] as! String
+
+        var cacheUrl = url;
+        
+        if cache == "true" {
+            KTVHTTPCache.logSetRecordLogEnable(false)
+            try KTVHTTPCache.proxyStart()
+            cacheUrl = KTVHTTPCache.proxyURL(withOriginalURL: url);
+        }
+        
         
         
         let coverFilename = properties["coverFilename"]
@@ -213,6 +226,11 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
     
     func updateInfoCenter() {
         if (self.player == nil) { return; }
+        
+        //锁屏界面处理
+        if(trackName == "") {
+            return
+        }
         
         let player = self.player!
         var songInfo = [String : Any]()
