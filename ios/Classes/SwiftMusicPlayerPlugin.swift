@@ -189,7 +189,10 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
         
         let coverFilename = properties["coverFilename"]
         if coverFilename != nil && coverFilename is String {
-            try setCover(coverFilename as! String)
+            let temp = coverFilename as! String
+            if(temp != ""){
+                try setCover(coverFilename as! String)
+            }
         }
         
         updateInfoCenter()

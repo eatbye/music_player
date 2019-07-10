@@ -136,6 +136,9 @@ class MusicPlayer {
   dispose() => _channel.setMethodCallHandler(null);
 
   Future<String> _showCoverImage(String coverUrl) async {
+    if(coverUrl==''){
+      return '';
+    }
     try {
       return await cover_image.transferImage(coverUrl);
     } catch (e) {

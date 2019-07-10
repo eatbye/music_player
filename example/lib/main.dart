@@ -32,11 +32,10 @@ class _MyAppState extends State<MyApp> {
     musicPlayer.onDuration = (value) {
       print(value);
     };
-    musicPlayer.onCompleted = (){
+    musicPlayer.onCompleted = () {
       print("=====================");
       print("播放完成");
     };
-
   }
 
   @override
@@ -50,56 +49,54 @@ class _MyAppState extends State<MyApp> {
           children: <Widget>[
             RaisedButton(
               onPressed: () => musicPlayer.play(MusicItem(
-                trackName: 'trackName',  //如果保持为空，锁屏控件将不显示
-                albumName: 'Sample Album',
-                artistName: 'Sample Artist',
-                url: 'http://listendata.ijsp.net/media/2/25/7754683.m4a',
-                coverUrl: 'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
-                cache: 'false'
+                  trackName: 'trackName',
+                  //如果保持为空，锁屏控件将不显示
+                  albumName: 'Sample Album',
+                  artistName: 'Sample Artist',
+                  url: 'http://listendata.ijsp.net/media/2/25/7754683.m4a',
+                  coverUrl:
+                      'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
+//                  coverUrl:'',
+                  cache: 'false'
 //              duration: Duration(seconds: 255),
-              )),
+                  )),
               child: Text('Play'),
             ),
-
             RaisedButton(
-              onPressed: (){
+              onPressed: () {
                 musicPlayer.pause();
               },
               child: Text('暂停'),
             ),
-
             RaisedButton(
-              onPressed: (){
+              onPressed: () {
                 musicPlayer.seek(0.95);
               },
               child: Text('快进'),
             ),
-
             RaisedButton(
               onPressed: () => musicPlayer.play(MusicItem(
-                trackName: '',
-                albumName: 'Sample Album',
-                artistName: 'Sample Artist',
-                url: 'http://listendata.ijsp.net/media/2/25/7754453.m4a',
-                coverUrl: 'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
+                  trackName: '',
+                  albumName: 'Sample Album',
+                  artistName: 'Sample Artist',
+                  url: 'http://listendata.ijsp.net/media/2/25/7754453.m4a',
+                  coverUrl:
+                      'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
                   cache: 'false'
 //              duration: Duration(seconds: 255),
-              )),
+                  )),
               child: Text('播放一个新的'),
             ),
             RaisedButton(
-              onPressed: () async{
+              onPressed: () async {
                 var appDir1 = (await getApplicationDocumentsDirectory()).path;
                 print(appDir1);
               },
               child: Text('路径'),
             ),
-
           ],
         ),
       ),
     );
   }
 }
-
-
