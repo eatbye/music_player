@@ -15,7 +15,7 @@ dependencies:
   flutter_cache_store: ^0.6.0
   meta: ^1.1.6
   path: ^1.6.2
-  path_provider: ^1.1.0
+  path_provider: ^1.1.2
 
 
 dev_dependencies:
