@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
                   url: 'http://listendata.ijsp.net/media/2/25/7754453.m4a',
                   coverUrl:
                       'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
-                  cache: 'false'
+                  cache: 'true'
 //              duration: Duration(seconds: 255),
                   )),
               child: Text('播放一个新的'),
