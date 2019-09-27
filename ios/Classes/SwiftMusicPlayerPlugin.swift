@@ -251,7 +251,7 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
         }
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
-        MPNowPlayingInfoCenter.default().playbackState = player.rate == 0.0 ? .paused : .playing
+        //MPNowPlayingInfoCenter.default().playbackState = player.rate == 0.0 ? .paused : .playing
     }
     
     func pause() {
