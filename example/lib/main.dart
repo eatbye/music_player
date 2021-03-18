@@ -53,13 +53,13 @@ class _MyAppState extends State<MyApp> {
                   //如果保持为空，锁屏控件将不显示
                   albumName: 'Sample Album',
                   artistName: 'Sample Artist',
-                  url: 'http://listendata.ijsp.net/media/2/25/7754683.m4a',
+                  url: 'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3',
                   coverUrl:
-                      'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
+                  'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
 //                  coverUrl:'',
                   cache: 'false'
 //              duration: Duration(seconds: 255),
-                  )),
+              )),
               child: Text('Play'),
             ),
             RaisedButton(
@@ -81,10 +81,10 @@ class _MyAppState extends State<MyApp> {
                   artistName: 'Sample Artist',
                   url: 'http://listendata.ijsp.net/media/2/25/7754453.m4a',
                   coverUrl:
-                      'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
+                  'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
                   cache: 'true'
 //              duration: Duration(seconds: 255),
-                  )),
+              )),
               child: Text('播放一个新的'),
             ),
             RaisedButton(

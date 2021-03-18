@@ -4,7 +4,8 @@ import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 //import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:flutter_cache_store/flutter_cache_store.dart';
+// import 'package:flutter_cache_store/flutter_cache_store.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
@@ -46,8 +47,10 @@ Future<String> transferImage(String coverUrl) async {
   }
 
 //  final cover = await DefaultCacheManager().getSingleFile(coverUrl);
-  final store = await CacheStore.getInstance();
-  final cover = await store.getFile(coverUrl);
+//   final store = await CacheStore.getInstance();
+  // final cover = await store.getFile(coverUrl);
+
+  var cover = await DefaultCacheManager().getSingleFile(coverUrl);
 
   final coverBytes = await cover.readAsBytes();
   final tmpFile = getTmpCoverFile(tmpDirectory, coverUrl);
