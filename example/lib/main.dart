@@ -49,10 +49,10 @@ class _MyAppState extends State<MyApp> {
           children: <Widget>[
             RaisedButton(
               onPressed: () => musicPlayer.play(MusicItem(
-                  trackName: 'trackName',
+                  trackName: 'trackName111',
                   //如果保持为空，锁屏控件将不显示
-                  albumName: 'Sample Album',
-                  artistName: 'Sample Artist',
+                  albumName: 'Sample Album22',
+                  artistName: 'Sample Artist33',
                   url: 'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3',
                   coverUrl:
                   'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
