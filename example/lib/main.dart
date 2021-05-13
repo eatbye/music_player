@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       print('暂停');
     };
     musicPlayer.onPosition = (value) {
-      print(value);
+      // print(value);
     };
     musicPlayer.onDuration = (value) {
       print(value);
@@ -53,11 +53,11 @@ class _MyAppState extends State<MyApp> {
                   //如果保持为空，锁屏控件将不显示
                   albumName: 'Sample Album22',
                   artistName: 'Sample Artist33',
-                  url: 'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3',
+                  url: 'http://static.wordbye.cn/listen-on-road/media/2/25/7754348.m4a',
                   coverUrl:
                   'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
 //                  coverUrl:'',
-                  cache: 'false'
+                  cache: 'true'
 //              duration: Duration(seconds: 255),
               )),
               child: Text('Play'),
@@ -79,7 +79,20 @@ class _MyAppState extends State<MyApp> {
                   trackName: '',
                   albumName: 'Sample Album',
                   artistName: 'Sample Artist',
-                  url: 'http://listendata.ijsp.net/media/2/25/7754453.m4a',
+                  url: 'http://static.wordbye.cn/listen-on-road/media/2/25/7754685.m4a',
+                  coverUrl:
+                  'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
+                  cache: 'true'
+//              duration: Duration(seconds: 255),
+              )),
+              child: Text('播放一个新的'),
+            ),
+            RaisedButton(
+              onPressed: () => musicPlayer.play(MusicItem(
+                  trackName: '',
+                  albumName: 'Sample Album',
+                  artistName: 'Sample Artist',
+                  url: 'http://static.wordbye.cn/listen-on-road/media/2/25/7754683.m4a',
                   coverUrl:
                   'http://img-tailor.11222.cn/pm/book/operate/2019011021053421.jpg',
                   cache: 'true'

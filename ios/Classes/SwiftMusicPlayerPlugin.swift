@@ -176,10 +176,16 @@ public class SwiftMusicPlayerPlugin: NSObject, FlutterPlugin {
 
             var cacheUrl = url;
             
+            print(cacheUrl)
             if cache == "true" {
                 KTVHTTPCache.logSetRecordLogEnable(false)
-                try KTVHTTPCache.proxyStart()
+                do{
+                    try KTVHTTPCache.proxyStart()
+                }catch let error{
+                    print("error:\(error)")//捕捉到错误，处理错误
+                }
                 cacheUrl = KTVHTTPCache.proxyURL(withOriginalURL: url);
+                print(cacheUrl)
             }
             
             
